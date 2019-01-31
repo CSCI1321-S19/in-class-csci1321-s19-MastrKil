@@ -1,6 +1,6 @@
 package puyo
 
-class Puyo extends Boba {
+class Jelly extends Boba{
   def x: Int = ???
   def y: Int = ???
   def color: Int = ???
