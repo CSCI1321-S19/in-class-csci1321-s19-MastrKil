@@ -1,6 +1,13 @@
 package puyo
 
+
+import scalafx.Includes._
 import scalafx.application.JFXApp
+import scalafx.scene.canvas.Canvas
+import scalafx.scene.Scene
+import scalafx.animation.AnimationTimer
+import scalafx.scene.input.KeyCode
+import scalafx.scene.input.KeyEvent
 
 object Main extends JFXApp {
   val canvasWidth = 6 * Renderer.CellSize
