@@ -20,6 +20,8 @@ object Main extends JFXApp {
       val renderer = new Renderer(gc)
       val board = new Board
 
+      content = canvas
+      
       onKeyPressed = (ke: KeyEvent) => {
         ke.code match {
           case KeyCode.Up => board.upPressed()
@@ -29,7 +31,6 @@ object Main extends JFXApp {
           case _ =>
         }
       }
-
       onKeyReleased = (ke: KeyEvent) => {
         ke.code match {
           case KeyCode.Up => board.upReleased()
@@ -48,11 +49,9 @@ object Main extends JFXApp {
           renderer.render(board)
         }
         lastTime = time
-
       })
-      timer.start
+      timer.start()
 
-      content = canvas
     }
   }
 }
