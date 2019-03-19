@@ -3,11 +3,11 @@ package puyo
 
 import scalafx.Includes._
 import scalafx.application.JFXApp
-import scalafx.scene.canvas.Canvas
 import scalafx.scene.Scene
+import scalafx.scene.canvas.Canvas
 import scalafx.animation.AnimationTimer
-import scalafx.scene.input.KeyCode
 import scalafx.scene.input.KeyEvent
+import scalafx.scene.input.KeyCode
 
 object Main extends JFXApp {
   val canvasWidth = Board.Width * Renderer.CellSize
