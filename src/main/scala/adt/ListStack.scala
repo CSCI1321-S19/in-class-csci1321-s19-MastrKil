@@ -12,6 +12,7 @@ class ListStack[A] extends MyStack[A] {
     ret
   }
   def peek: A = top.data
+  
   def isEmpty: Boolean = top == null
 }
 

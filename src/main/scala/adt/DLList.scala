@@ -3,38 +3,23 @@ package adt
 import collection.mutable
 
 class DLList[A] extends mutable.Buffer[A] {
-
   import DLList.Node
-
   private val end = new Node[A](null.asInstanceOf[A], null, null)
   end.next = end
   end.prev = end
   private var numElems = 0
 
   def +=(elem: A): this.type = {
-
-    val newNode = new Node[A](elem, null, null)
     val n = new Node[A](elem, end.prev, end)
     end.prev.next = n
-    end.next = n
-    numElems += 1
-
-    this
-  }
-  def +=:(elem: A): this.type = {
-    val newNode = new Node[A](elem, null, null)
-    val n = new Node[A](elem, end, end.next)
-    end.next.prev = n
     end.prev = n
     numElems += 1
-
     this
   }
+  def +=:(elem: A): this.type = ???
   def apply(n: Int): A = {
-
-    var rover = myHead
+    var rover = end.next
     for (_ <- 1 to n) rover = rover.next
-
     rover.data
   }
   def clear(): Unit = {
@@ -43,26 +28,21 @@ class DLList[A] extends mutable.Buffer[A] {
     numElems = 0
   }
   def insertAll(n: Int, elems: Traversable[A]): Unit = ???
-  def length: Int = ???
+  def length: Int = numElems
   def remove(n: Int): A = {
     require(n >= 0 && n < numElems)
-    
     numElems -= 1
     var rover = end.next
-    for (_ <- 1 to n) {
-      rover.prev.next = rover.next
-      rover.next.prev = rover.prev
-    }
-    val ret = rover.next.data
-    rover.next = rover.next.next
+    for (_ <- 1 to n) rover = rover.next
+    val ret = rover.data
+    rover.prev.next = rover.next
+    rover.next.prev = rover.prev
     ret
   }
   def update(n: Int, newelem: A): Unit = {
     require(n >= 0 && n < numElems)
-
     var rover = end.next
     for (_ <- 1 to n) rover = rover.next
-
     rover.data = newelem
   }
 
@@ -76,9 +56,8 @@ class DLList[A] extends mutable.Buffer[A] {
       ret
     }
   }
-
 }
 
 object DLList {
-  class Node[A](var data: A, var prev: Node[A], var next: Node[A])
+  private class Node[A](var data: A, var prev: Node[A], var next: Node[A])
 }
