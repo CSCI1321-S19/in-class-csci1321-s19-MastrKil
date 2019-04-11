@@ -32,8 +32,22 @@ object Sorts extends App {
     }
   }
 
+  def quickSort[A](lst: List[A])(lt: (A,A) => Boolean): List[A] = lst match{
+    case Nil => Nil
+    case h :: Nil => lst
+    case pivot :: t => 
+      val (less, greater) = t.partition(a => lt(a, pivot))
+      quickSort(less)(lt) ::: (pivot :: quickSort(greater)(lt))
+  }
+  
+  def betterQuickSort[A](arr: Array[A])(at: (A,A) => Boolean): Array[A] = {
+    ???
+  }
+  
   val nums = Array.fill(10)(math.random) //util.Random.nextInt(100))
   println(nums.mkString(" "))
   bubbleSort(nums)(_ > _)
+  println(nums.mkString(" "))
+  quickSort(nums.toList)(_ < _)
   println(nums.mkString(" "))
 }
